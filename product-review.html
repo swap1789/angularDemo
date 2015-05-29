@@ -1,0 +1,27 @@
+<form name="reviewForm" ng-submit="reviewForm.$valid && subrev.addreview(product)" novalidate>
+	<ul>
+		<li>
+		<p>Stars: {{subrev.review.stars}}</p>
+		<p>Comment: {{subrev.review.body}}</p>
+		<p>Author: {{subrev.review.author}}</p>
+		</li>
+	</ul>
+
+	<blockquote style="border-left:0px">Add your review</blockquote>
+	<div class="form-group">
+		<label class="form-control" style="border:0px">Add Stars</label>
+		<select class="form-control" ng-model="subrev.review.stars" required>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+		<option>5</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label class="form-control" style="border:0px">Add comments</label>
+		<textarea class="form-control" ng-model="subrev.review.body" required></textarea>
+		</div>
+	<input type="email" ng-model="subrev.review.author" required style="width:100%; margin-bottom: 15px;"/>
+	<input type ="Submit" value="Submit"/>
+</form>

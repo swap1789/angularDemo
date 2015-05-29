@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+	<html ng-app="storeApp">
+		<head>
+			<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+			<style>
+			.ng-invalid.ng-dirty {
+				border-color: #fa787e;
+			}
+			.ng-valid.ng-dirty {
+				border-color: #78fa89;
+			}
+			</style>		
+		</head>
+		<body ng-controller="storeController as store">
+			<div class="col-sm-6" ng-repeat="product in store.products | orderBy: '-price'">
+				<product-details></product-details>		
+				<img ng-src="{{product.images[0].full}}" />
+				<button ng-show="store.product.canPurchase">Add to Cart</button>
+				<section ng-controller="panelController as panel">
+					<ul class="nav nav-pills">
+						<li ng-class="{active: panel.isSelected(1)}"><a href="" ng-click="panel.selecttab(1)" >Description</a></li>
+						<li ng-class="{active: panel.isSelected(2)}"><a href="" ng-click="panel.selecttab(2)">Specifications</a></li>
+						<li ng-class="{active: panel.isSelected(3)}"><a href="" ng-click="panel.selecttab(3)">Reviews</a></li>
+					</ul>
+				
+				
+					<div class="" ng-show="panel.tab===1">
+						<p>Description</p>
+						<p>{{product.description}}</p>
+					</div>
+					<div class="" ng-show="panel.tab===2">
+						<p>Specifications</p>
+						<p>{{product.description}}</p>
+					</div>
+					<div class="" ng-show="panel.tab===3">
+						<p>Reviews</p>
+						<section class="all reviews">
+							<blockquote style="border-left:0px">Reviews are listed below:</blockquote>
+							<ul>
+								<li ng-repeat="review in product.reviews">
+									<p>Stars: {{review.stars}}</p>
+									<p>Comment: {{review.body}}</p>
+								</li>
+							</ul>
+							<product-review></product-review>
+						</section>
+					</div>
+				</section>
+				
+			</div>
+			<script type="text/javascript" src="bower_components/angularjs/angular.min.js"></script>
+			<script type="text/javascript" src="app.js"></script>	
+		</body>
+	</html>
